@@ -10,6 +10,7 @@ from django.contrib.sitemaps.views import sitemap
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.static import serve
 
+
 admin.autodiscover()
 
 urlpatterns = [
@@ -18,8 +19,9 @@ urlpatterns = [
 ]
 
 urlpatterns += i18n_patterns(
-    url(r'^admin/', include(admin.site.urls)),  # NOQA
-    url(r'^', include('cms.urls')),
+    url(r'^admin/', include(admin.site.urls)),  # NOQA Django admin URLs
+    url(r'^polls/', include('polls.urls')),  # Custom polls app
+    url(r'^', include('cms.urls')),  # CMS URLs
 )
 
 # This is only needed when using runserver.

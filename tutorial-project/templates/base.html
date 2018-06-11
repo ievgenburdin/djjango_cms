@@ -36,9 +36,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              {% show_menu 0 100 100 100 %}
-            </li>
+            {% show_menu 0 100 100 100 "custom/menu.html" %}
           </ul>
         </div>
       </div>
@@ -65,15 +63,19 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-          {% block content %}{% endblock content %}
+          {% block content %}
+
+          {% endblock content %}
         </div>
       </div>
     </div>
 
+    <br>
+
     <hr>
 
     <!-- Footer -->
-    {% block footer%}
+    {% block footer %}
     <footer>
       <div class="container">
         <div class="row">

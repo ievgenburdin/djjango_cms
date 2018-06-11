@@ -33,14 +33,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-
-
-
-
 ROOT_URLCONF = 'mysite.urls'
-
-
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
@@ -69,11 +62,13 @@ STATICFILES_DIRS = (
 )
 SITE_ID = 1
 
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'mysite', 'templates'),],
+        'DIRS': [os.path.join(BASE_DIR, 'mysite', 'templates'),
+                 os.path.join(BASE_DIR, 'polls', 'templates'),
+                 os.path.join(BASE_DIR, 'templates', ''),
+                 ],
         'OPTIONS': {
             'context_processors': [
                 'django.contrib.auth.context_processors.auth',
@@ -138,8 +133,23 @@ INSTALLED_APPS = (
     'djangocms_snippet',
     'djangocms_googlemap',
     'djangocms_video',
-    'mysite'
+
+    # Need for aldryn blog
+    'aldryn_apphooks_config',
+    'aldryn_categories',
+    'aldryn_common',
+    'aldryn_newsblog',
+    'aldryn_people',
+    'aldryn_translation_tools',
+    'parler',
+    'sortedm2m',
+    'taggit',
+
+    'mysite',
+    'polls',
+    'polls_cms_integration',
 )
+
 
 LANGUAGES = (
     ## Customize this
@@ -200,5 +210,6 @@ THUMBNAIL_PROCESSORS = (
     'easy_thumbnails.processors.colorspace',
     'easy_thumbnails.processors.autocrop',
     'filer.thumbnail_processors.scale_and_crop_with_subject_location',
-    'easy_thumbnails.processors.filters'
+    'easy_thumbnails.processors.filters',
+    'easy_thumbnails.processors.background',
 )
