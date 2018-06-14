@@ -1,7 +1,17 @@
 {% load menu_tags %}
 
 {% for child in children %}
-    <li class="nav-item{% if child.selected %} selected{% endif %}{% if child.ancestor %} ancestor{% endif %}{% if child.sibling %} sibling{% endif %}{% if child.descendant %} descendant{% endif %}">
-        <a class="nav-link" href="{{ child.attr.redirect_url|default:child.get_absolute_url }}">{{ child.get_menu_title }}</a>
+    <li class="nav-item {% if child.selected %} selected{% endif %}{% if child.ancestor %} ancestor{% endif %}{% if child.sibling %} sibling{% endif %}{% if child.descendant %} descendant{% endif %}{% if child.children %} dropdown{% endif %}">
+        {% if child.children %}
+            <a class="nav-link dropdown-toggle" href="{{ child.attr.redirect_url|default:child.get_absolute_url }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ child.get_menu_title }}</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="{{ child.attr.redirect_url|default:child.get_absolute_url }}">{{ child.get_menu_title }}</a>
+                {% for sub_child in child.children %}
+                    <a class="dropdown-item" href="{{ sub_child.attr.redirect_url|default:sub_child.get_absolute_url }}">{{ sub_child.get_menu_title }}</a>
+                {% endfor %}
+            </div>
+        {% else %}
+            <a class="nav-link" href="{{ child.attr.redirect_url|default:child.get_absolute_url }}">{{ child.get_menu_title }}</a>
+        {% endif %}
     </li>
 {% endfor %}

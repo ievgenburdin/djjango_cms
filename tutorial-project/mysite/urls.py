@@ -20,7 +20,7 @@ urlpatterns = [
 
 urlpatterns += i18n_patterns(
     url(r'^admin/', include(admin.site.urls)),  # NOQA Django admin URLs
-    url(r'^polls/', include('polls.urls')),  # Custom polls app
+    # url(r'^polls/', include('polls.urls')),  # Custom polls app
     url(r'^', include('cms.urls')),  # CMS URLs
 )
 
